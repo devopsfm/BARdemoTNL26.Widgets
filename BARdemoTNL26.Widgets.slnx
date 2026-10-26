@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BARdemoTNL26.Widgets/BARdemoTNL26.Widgets.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BARdemoTNL26.Widgets.Tests/BARdemoTNL26.Widgets.Tests.csproj" />
+  </Folder>
+</Solution>
