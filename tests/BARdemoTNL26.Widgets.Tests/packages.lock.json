@@ -60,6 +60,11 @@
           "Microsoft.TestPlatform.ObjectModel": "18.11.0"
         }
       },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "12.0.1",
+        "contentHash": "pBR3wCgYWZGiaZDYP+HHYnalVnPJlpP1q55qvVb+adrDHmFMDc1NAKio61xTwftK3Pw5h7TZJPJEEVMd6ty8rg=="
+      },
       "xunit.abstractions": {
         "type": "Transitive",
         "resolved": "2.0.3",
@@ -103,7 +108,8 @@
       "BrianRandell.Demo.TechoramaNL26.Widgets": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "[10.0.14, )"
+          "Microsoft.Extensions.Logging.Abstractions": "[10.0.14, )",
+          "Newtonsoft.Json": "[12.0.1, )"
         }
       }
     }
