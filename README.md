@@ -8,11 +8,11 @@ This is the corrected .NET pipeline. The deliberately broken one is in [BARdemoT
 
 | Demo | What you see | Files |
 |---|---|---|
-| D2 Dependency review, NuGetAudit, cooldown, Trusted Publishing | The `add-newtonsoft` pull request fails twice, independently: the dependency review check names the advisory, and the build fails because NU1902 is an error. Dependabot waits out a cooldown before proposing updates. The release workflow gets a one-hour nuget.org key from an OIDC token instead of a stored secret. | `.github/workflows/dependency-review.yml`, `Directory.Build.props`, `.github/dependabot.yml`, `.github/workflows/release.yml` |
+| D2 Dependency review, NuGetAudit, cooldown, Trusted Publishing | The `add-newtonsoft` pull request fails twice, independently: the dependency review check names the advisory, and the build fails because NU1903 (a high severity advisory) is promoted to an error. Dependabot waits out a cooldown before proposing updates. The release workflow gets a one-hour nuget.org key from an OIDC token instead of a stored secret. | `.github/workflows/dependency-review.yml`, `Directory.Build.props`, `.github/dependabot.yml`, `.github/workflows/release.yml` |
 | D3 Pinning and Dependabot | Every action is pinned to a full commit SHA with the version in a comment. Dependabot keeps the SHAs current and rewrites the comment. | `.github/workflows/*.yml`, the open Dependabot pull request |
 | D4 Attestations | The package from the release run carries SLSA provenance. `gh attestation verify` passes on the original and fails on a copy with one byte appended. | `.github/workflows/release.yml`, `scripts/tamper.sh` |
 
-Other controls in this repository: `permissions: contents: read` on every workflow, `persist-credentials: false` on checkout, `dotnet restore --locked-mode` against a committed `packages.lock.json`, Central Package Management, package source mapping in `nuget.config`, a `nuget-release` environment with a required reviewer, and a ruleset on `main` that requires the `build` and `review` checks and blocks merges while a secret scanning alert is open.
+Other controls in this repository: `permissions: contents: read` on every workflow, `persist-credentials: false` on checkout, `dotnet restore --locked-mode` against a committed `packages.lock.json`, package versions kept on each `PackageReference` so the dependency graph can see them, a `nuget.config` that clears inherited sources and maps every package to nuget.org, a `nuget-release` environment with a required reviewer, and a ruleset on `main` that requires the `build` and `review` checks and blocks merges while a secret scanning alert is open.
 
 ## Try D4 yourself
 
